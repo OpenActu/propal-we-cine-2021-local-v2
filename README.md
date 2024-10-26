@@ -17,3 +17,7 @@ mkdir -p local/php8/share/webapp &&
 cd local &&
 docker compose up -d
 ```
+
+2. Installation de webapp
+
+Se reférrer à *../webapp/README.md*

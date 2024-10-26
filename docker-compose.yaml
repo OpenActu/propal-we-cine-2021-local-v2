@@ -17,4 +17,7 @@ services:
       - "$PWD/php8/share/webapp:/share"
     environment:
       # configuration de la base de donnée pour l'application symfony
-      ADMIN_PASSWORD: 2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b
+      APP_ENV: dev
+      APP_SECRET: 07200d027b54861b75589fbefeeacc4b
+      TMDB_PASSWORD: Mhpc5l8RU7nMiiY8z9FQ
+      TMDB_USERNAME: yanroussel

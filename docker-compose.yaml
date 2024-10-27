@@ -19,8 +19,5 @@ services:
       # variables d'environnement qui alimente directement le .env
       APP_ENV: dev
       APP_SECRET: 07200d027b54861b75589fbefeeacc4b
-      TMDB_PASSWORD: Mhpc5l8RU7nMiiY8z9FQ
-      TMDB_USERNAME: yanroussel
       TMDB_API_KEY: 42815b3ceb6a8041e05fb6eea8cffc6f
-      TMDB_API_KEY_READING: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MjgxNWIzY2ViNmE4MDQxZTA1ZmI2ZWVhOGNmZmM2ZiIsIm5iZiI6MTcyOTkzMTYxMS4yODQzNzQsInN1YiI6IjY3MWM4YWM0MWVhMzM5MjgyOTdkNGFmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YZnOhr6vQcH5AQICwNWLyiAyvoDgNsq3CySUIXMSRI8"
       TMDB_REMOTE_URL: "https://api.themoviedb.org/"

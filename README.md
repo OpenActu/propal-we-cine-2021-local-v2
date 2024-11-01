@@ -21,3 +21,13 @@ docker compose up -d
 2. Installation de webapp
 
 Se reférrer à *../webapp/README.md*
+
+3. Installation de minio 
+
+Cette étape, il faut se connecter à l'interface web (http://localhost:9001). Les actions à mener sont les suivantes : 
+* Création d'un utilisateur 
+Cliquez sur Identity, Users, puis Create a user.
+Définissez une access key (username), une secret key (password) et sélectionnez la politique d'accès "readwrite", ensuite un bucket.
+Ces variables sont référencé au sein de webapp respectivement par MINIO_ACCESS_KEY, MINIO_SECRET_KEY et MINIO_BUCKET au travers du .env
+
+Important: La configuration est essentielle pour que les tests de validation sur MINIO soient opérationnels

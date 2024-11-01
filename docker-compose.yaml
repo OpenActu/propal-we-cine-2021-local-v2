@@ -21,3 +21,46 @@ services:
       APP_SECRET: 07200d027b54861b75589fbefeeacc4b
       TMDB_API_KEY: 42815b3ceb6a8041e05fb6eea8cffc6f
       TMDB_REMOTE_URL: "https://api.themoviedb.org/"
+      DATABASE_TYPE: "postgresql"
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: "propal.we.cine.2021.postgres" 
+      DATABASE_PORT: 5432
+      DATABASE_NAME: "propal_we_cine_2021"
+  #############################################################
+  #                                                           #
+  # Postgres : base de données                                #
+  #                                                           #
+  #############################################################
+  propal_we_cine_2021_postgres:
+    hostname: 'propal.we.cine.2021.postgres'
+    container_name: 'propal-we-cine-2021-postgres-instance'
+    build: 'postgres'
+    restart: 'always'
+    ports:
+      - "9942:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - "propal-we-cine-2021-postgres-data:/var/lib/postgresql/data"
+  # PgAdmin : gestionnaire de base de donnée
+  propal_we_cine_2021_pgadmin:
+    hostname: 'propal.we.cine.2021.pgadmin'
+    image: dpage/pgadmin4
+    container_name: propal-we-cine-2021-pgadmin-instance
+    restart: always
+    ports:
+      - "8881:80"
+    depends_on:
+      - propal_we_cine_2021_postgres
+    volumes:
+      - "propal-we-cine-2021-pgadmin:/var/lib/pgadmin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@noname.fr
+      PGADMIN_DEFAULT_PASSWORD: 'admin'
+      PGADMIN_LISTEN_PORT: 80
+      GUNICORN_THREADS: 1
+volumes:
+  propal-we-cine-2021-pgadmin:
+  propal-we-cine-2021-postgres-data:

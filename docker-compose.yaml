@@ -30,6 +30,8 @@ services:
       MINIO_HOST: "http://propal-we-cine-2021-minio-instance:9000"
       MINIO_ACCESS_KEY: "mYOCgRwJ4Y0Y1h631j5K"
       MINIO_SECRET_KEY: "jQSlr5ydkAD4z5x6gRPtEQeBdNJwN5sohtjR0Aww"
+      MINIO_READER_ACCESS_KEY: ""
+      MINIO_READER_SECRET_KEY: ""
       MINIO_BUCKET: "documents"
   #############################################################
   #                                                           #

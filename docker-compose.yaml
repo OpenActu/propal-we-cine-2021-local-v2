@@ -1,6 +1,22 @@
 services:
   #############################################################
   #                                                           #
+  # REDIS                                                     #
+  #                                                           #
+  #############################################################
+  propal_we_cine_2021_redis:
+    hostname: 'propal.we.cine.2021.redis'
+    image: 'redis:latest'
+    container_name: propal-we-cine-2021-redis-instance
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - propal-we-cine-2021-cache:/data
+
+  #############################################################
+  #                                                           #
   # application web we-cine-2021 : interface                  #
   #                                                           #
   #############################################################
@@ -98,3 +114,4 @@ volumes:
   propal-we-cine-2021-minio:
   propal-we-cine-2021-pgadmin:
   propal-we-cine-2021-postgres-data:
+  propal-we-cine-2021-cache:

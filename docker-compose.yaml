@@ -1,6 +1,24 @@
 services:
   #############################################################
   #                                                           #
+  # RABBIT MQ                                                 #
+  #                                                           #
+  #############################################################
+  propal_we_cine_2021_rabbitmq:
+    hostname: 'propal.we.cine.2021.rabbitmq'
+    build: './rabbitmq'
+    container_name: propal-we-cine-2021-rabbitmq-instance
+    ports: 
+      - '5672:5672' 
+      - '15672:15672' 
+    volumes: 
+      - propal-we-cine-2021-rabbitmq-data:/var/lib/rabbitmq/ 
+      - propal-we-cine-2021-rabbitmq-log:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+  #############################################################
+  #                                                           #
   # REDIS                                                     #
   #                                                           #
   #############################################################
@@ -118,3 +136,5 @@ volumes:
   propal-we-cine-2021-pgadmin:
   propal-we-cine-2021-postgres-data:
   propal-we-cine-2021-cache:
+  propal-we-cine-2021-rabbitmq-data:
+  propal-we-cine-2021-rabbitmq-log:

@@ -1,3 +1,27 @@
+# Objectif du projet 
+
+## Version initiale 
+La version initiale a été pensé de manière minimaliste afin de répondre au [cahier des charges suivant](./test-we-cine-2021.pdf). L'architecture est uniquement constitué d'un serveur web et avait pour priorité de valider l'approche algorithmique et le respect aux normes standards (SOLID ...). Le diagramme de traitement associé peut être résumé comme suit : 
+![image](./version_initiale.svg)
+
+## Version évoluée
+La version initiale, par trop minimaliste, ne mettait pas en valeur les besoins d'une application moderne. Les principales améliorations apportées sont notamment : 
+
+* Intégration de REACT comme moteur de rendu
+* Mise en place de web services via API PLATFORM
+* Import asynchrone des films et images à l'aide de RABBITMQ
+* Ajout de mécaniques d'optimisation pour privilégier le requête en base de donnée aux appels distants de l'API "the movie database"
+* Activation du cache RAM REDIS pour optimiser les chargements des contrôleurs 
+* Stocker les images sur un CDN AWS S3 à l'aide de MINIO
+
+### Architecture pour la récupération de la liste des films 
+
+![image](./version_evoluee_liste_films.svg)
+
+### Architecture pour la récupération d'une image
+
+![image](./version_evoluee_affichage_image.svg)
+
 # Installation
 
 ## Pré-requis

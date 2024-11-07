@@ -70,7 +70,8 @@ services:
       MINIO_JS_HOSTNAME: "localhost"
       MINIO_JS_PORT: 9000
       MINIO_JS_USE_SSL: false
-      RABBITMQ_URL: "amqp://admin:admin@propal_we_cine_2021_rabbitmq:5672"
+      RABBITMQ_TRANSPORT_DSN: "amqp://admin:admin@propal_we_cine_2021_rabbitmq:5672"
+      DOCTRINE_TRANSPORT_DSN: "doctrine://default"
   #############################################################
   #                                                           #
   # Postgres : base de données                                #

@@ -32,7 +32,48 @@ services:
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - propal-we-cine-2021-cache:/data
-
+  #############################################################
+  #                                                           #
+  # application web we-cine-2021 : worker                     #
+  #                                                           #
+  #############################################################
+  propal_we_cine_2021_worker:
+    hostname: 'propal.we.cine.2021.worker'
+    build: '../webapp'
+    container_name: propal-we-cine-2021-worker-instance
+    restart: always
+    volumes:
+      - "$PWD/../webapp:/var/www/html"
+      - "$PWD/php8/log/apache2/worker:/var/log/apache2"
+    depends_on:
+      - propal_we_cine_2021_postgres
+      - propal_we_cine_2021_rabbitmq
+      - propal_we_cine_2021_redis
+    entrypoint:
+      - "docker/worker.sh"
+    environment:
+      # variables d'environnement qui alimente directement le .env
+      APP_ENV: dev
+      APP_SECRET: 07200d027b54861b75589fbefeeacc4b
+      TMDB_API_KEY: 42815b3ceb6a8041e05fb6eea8cffc6f
+      TMDB_REMOTE_URL: "https://api.themoviedb.org/"
+      DATABASE_TYPE: "postgresql"
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: "propal.we.cine.2021.postgres" 
+      DATABASE_PORT: 5432
+      DATABASE_NAME: "propal_we_cine_2021"
+      MINIO_HOST: "http://propal-we-cine-2021-minio-instance:9000"
+      MINIO_ACCESS_KEY: "mYOCgRwJ4Y0Y1h631j5K"
+      MINIO_SECRET_KEY: "jQSlr5ydkAD4z5x6gRPtEQeBdNJwN5sohtjR0Aww"
+      MINIO_READER_ACCESS_KEY: "mYOCgRwJ4Y0Y1h631j5K"
+      MINIO_READER_SECRET_KEY: "jQSlr5ydkAD4z5x6gRPtEQeBdNJwN5sohtjR0Aww"
+      MINIO_BUCKET: "documents"
+      MINIO_JS_HOSTNAME: "localhost"
+      MINIO_JS_PORT: 9000
+      MINIO_JS_USE_SSL: false
+      RABBITMQ_TRANSPORT_DSN: "amqp://admin:admin@propal_we_cine_2021_rabbitmq:5672"
+      DOCTRINE_TRANSPORT_DSN: "doctrine://default"
   #############################################################
   #                                                           #
   # application web we-cine-2021 : interface                  #
@@ -49,6 +90,10 @@ services:
       - "$PWD/../webapp:/var/www/html"
       - "$PWD/php8/log/apache2/webapp:/var/log/apache2"
       - "$PWD/php8/share/webapp:/share"
+    depends_on:
+      - propal_we_cine_2021_postgres
+      - propal_we_cine_2021_rabbitmq
+      - propal_we_cine_2021_redis
     environment:
       # variables d'environnement qui alimente directement le .env
       APP_ENV: dev
